@@ -27,7 +27,7 @@ def verify_token(f):
         token = auth.split(" ")[1]
         try:
             payload = jwt.decode(token, os.getenv('JWT_SECRET'), algorithms=["HS256"])
-            user_id = payload["sub"]
+            user_id = payload["userId"]
             user = db.session.get(User, user_id)
             if not user:
                 raise Exception("User not found")
